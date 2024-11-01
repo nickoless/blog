@@ -1,26 +1,35 @@
 {
-  "name": "blog-nextjs",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "react": "19.0.0-rc-69d4b800-20241021",
-    "react-dom": "19.0.0-rc-69d4b800-20241021",
-    "next": "15.0.1"
-  },
-  "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
-    "eslint": "^8",
-    "eslint-config-next": "15.0.1"
-  }
+	"name": "blog-nextjs",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint",
+		"codegen": "graphql-codegen --watch"
+	},
+	"dependencies": {
+		"next": "15.0.1",
+		"react": "19.0.0-rc-69d4b800-20241021",
+		"react-dom": "19.0.0-rc-69d4b800-20241021"
+	},
+	"devDependencies": {
+		"@graphql-codegen/cli": "^5.0.3",
+		"@graphql-codegen/client-preset": "^4.5.0",
+		"@graphql-codegen/typescript-urql": "^4.0.0",
+		"@parcel/watcher": "^2.4.1",
+		"@types/node": "^20",
+		"@types/react": "^18",
+		"@types/react-dom": "^18",
+		"@urql/next": "^1.1.2",
+		"eslint": "^8",
+		"eslint-config-next": "15.0.1",
+		"graphql": "^16.9.0",
+		"next-urql": "^5.0.2",
+		"postcss": "^8",
+		"tailwindcss": "^3.4.1",
+		"typescript": "^5.6.3",
+		"urql": "^4.2.0"
+	}
 }

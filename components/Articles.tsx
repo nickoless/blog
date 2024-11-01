@@ -1,17 +1,23 @@
-export default async function Articles() {
-	let data = await fetch('http://localhost:1337/api/articles');
-	let articles = await data.json();
+import getClient from '@/graphql/client';
+import { getAllArticles } from '@/graphql/queries/getAllArticles';
 
-	let template;
+const Articles = async () => {
+	const result = await getClient().query(getAllArticles, {});
+	const { data, error } = result;
 
-	if (articles) {
-		const articlesElement = articles.data?.map((article) => (
-			<li key={article.id}>{article.title}</li>
-		));
+	console.log('result;', result);
 
-		template = articlesElement;
-	} else {
-		template = <></>;
-	}
-	return <ul>{template}</ul>;
-}
+	if (error) return <p>Oh no... {error.message}</p>;
+
+	return (
+		<ul>
+			{data.articles.map((article) => (
+				<li>
+					<a href={`article/${article.slug}`}>{article.title}</a>
+				</li>
+			))}
+		</ul>
+	);
+};
+
+export default Articles;
