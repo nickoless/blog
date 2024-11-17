@@ -15,6 +15,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  */
 const documents = {
     "\n\tquery getAllArticles {\n\t\tarticles {\n\t\t\tauthor {\n\t\t\t\tname\n\t\t\t}\n\t\t\tslug\n\t\t\ttitle\n\t\t\tcreatedAt\n\t\t}\n\t}\n": types.GetAllArticlesDocument,
+    "\n\tquery Example($slug: String) {\n\t\tarticles(filters: { slug: { eq: $slug } }) {\n\t\t\tblocks\n\t\t\ttitle\n\t\t\tdescription\n\t\t\tauthor {\n\t\t\t\tname\n\t\t\t}\n\t\t\tcategory {\n\t\t\t\tname\n\t\t\t\tslug\n\t\t\t}\n\t\t}\n\t}\n": types.ExampleDocument,
 };
 
 /**
@@ -35,6 +36,10 @@ export function graphql(source: string): unknown;
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n\tquery getAllArticles {\n\t\tarticles {\n\t\t\tauthor {\n\t\t\t\tname\n\t\t\t}\n\t\t\tslug\n\t\t\ttitle\n\t\t\tcreatedAt\n\t\t}\n\t}\n"): (typeof documents)["\n\tquery getAllArticles {\n\t\tarticles {\n\t\t\tauthor {\n\t\t\t\tname\n\t\t\t}\n\t\t\tslug\n\t\t\ttitle\n\t\t\tcreatedAt\n\t\t}\n\t}\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n\tquery Example($slug: String) {\n\t\tarticles(filters: { slug: { eq: $slug } }) {\n\t\t\tblocks\n\t\t\ttitle\n\t\t\tdescription\n\t\t\tauthor {\n\t\t\t\tname\n\t\t\t}\n\t\t\tcategory {\n\t\t\t\tname\n\t\t\t\tslug\n\t\t\t}\n\t\t}\n\t}\n"): (typeof documents)["\n\tquery Example($slug: String) {\n\t\tarticles(filters: { slug: { eq: $slug } }) {\n\t\t\tblocks\n\t\t\ttitle\n\t\t\tdescription\n\t\t\tauthor {\n\t\t\t\tname\n\t\t\t}\n\t\t\tcategory {\n\t\t\t\tname\n\t\t\t\tslug\n\t\t\t}\n\t\t}\n\t}\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

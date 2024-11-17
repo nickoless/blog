@@ -5,15 +5,17 @@ const Articles = async () => {
 	const result = await getClient().query(getAllArticles, {});
 	const { data, error } = result;
 
+	console.log('data', data);
+
 	console.log('result;', result);
 
 	if (error) return <p>Oh no... {error.message}</p>;
 
 	return (
 		<ul>
-			{data.articles.map((article) => (
+			{data?.articles.map((article) => (
 				<li>
-					<a href={`article/${article.slug}`}>{article.title}</a>
+					<a href={`article/${article?.slug}`}>{article?.title}</a>
 				</li>
 			))}
 		</ul>

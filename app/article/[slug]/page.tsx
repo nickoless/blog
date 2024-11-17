@@ -1,15 +1,25 @@
-import ArticleContent from '@/components/ArticleContent';
+import getClient from '@/graphql/client';
+import { getArticle } from '@/graphql/queries/getArticle';
+import { BlocksRenderer } from '@strapi/blocks-react-renderer';
+
+// TODO: TAILWIND PROSE
 
 const Article = async ({ params }: { params: { slug: string } }) => {
-	const { slug } = await params;
-	let data = await fetch(`http://localhost:1337/api/article/${slug}?populate=*`);
-	let articleContent = await data.json();
+	const awaitParams = await params;
+	const result = await getClient().query(getArticle, { slug: awaitParams.slug });
+	const { data, error } = result;
 
-	console.log(articleContent);
+	const articleData = data?.articles[0];
 
-	let template;
+	if (error) return <p>Oh no... {error.message}</p>;
 
-	return <div>My Post: {slug}</div>;
+	return (
+		<div className='flex items-center justify-center my-10'>
+			<article className='prose lg:prose-xl'>
+				<BlocksRenderer content={articleData?.blocks} />
+			</article>
+		</div>
+	);
 };
 
 export default Article;

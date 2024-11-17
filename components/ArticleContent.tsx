@@ -4,8 +4,6 @@ const ArticleContent = async ({ slug }) => {
 
 	let template;
 
-	console.log(articleContent);
-
 	return <ul></ul>;
 };
 export default ArticleContent;
